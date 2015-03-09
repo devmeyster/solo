@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>GitHub Open Repo View</title>
+	<!-- <link rel="stylesheet" type="text/css" media="all" href="css/styles.css"> -->
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+</head>
+	<body>
+	  <div id="w">
+	    <h1>Open Source Repo Picker</h1>
+	    <p>Enter a Github repo below and click the button to display profile.</p>
+	    
+	    <input type="text" name="ghusername" id="ghreponame" placeholder="Github username...">
+	    
+	    <a href="#" id="ghsubmitbtn">Pull User Data</a>
+	    <br>
+	    <br>
+	    <p><strong>Repos List:</strong></p>
+	    <table class="chart">
+	    	<tr>
+	    		<td>Repo name</td>
+	    		<td>Stars</td>
+	    		<td>Merged %</td>
+	    		<td>Forks</td>
+	    		<td>Subscribers</td>
+	    	</tr>
+	    </table>
+	  </div>
+    <div id="ghapidata" class="clearfix"></div>
+	<script type="text/javascript">
+	$(function(){
+	  $('#ghsubmitbtn').on('click', function(e){
+	    e.preventDefault();
+	    $('#ghapidata').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+	    
+	    var link = $('#ghreponame').val();
+	    link = link.split('/');
+			// console.log(link);
+	    var repoUser = link[link.length-2];
+	    var repoName = link[link.length-1];
+	    // console.log(repoUser, repoName);
+
+	    var repoProfile = 'https://api.github.com/repos/'+repoUser+'/'+repoName;
+	    var repouri  = 'https://api.github.com/repos/'+repoUser+'/'+repoName+'/pulls?state=closed&page=1&per_page=100';
+
+	    requestJSON(repouri, function(json) {
+	      if(false) {
+	        $('#ghapidata').html("<h2>No Repo Found</h2>");
+	      }
+	      else {
+	      	var name = "";
+	      	var watched = 0;
+	      	var stared = 0;
+	      	var forks = 0;
+
+	      	$.getJSON(repoProfile, function(json){
+	      		data = json;
+	      		name = data['name']
+	      		watched = data['subscribers_count'];
+	      		stared = data['watchers'];
+	      		forks = data['forks'];
+	      	});
+
+
+	        var repositories;
+	        $.getJSON(repouri, function(json){
+	          repositories = json; 
+	          console.log(repositories);  
+	          outputPageContent();                
+	        });          
+	        var outhtml = ""; 
+	        function outputPageContent() {
+	          if(repositories.length === 0) { outhtml = outhtml + '<p>No repos!</p></div>'; }
+	          else {	
+
+	          	var totalPulls = 100;
+	          	var res = [];
+	          	var pullRequests = json;
+
+	          	$.each(repositories, function(index) {
+	          	  if(repositories[index]['merged_at'] !== null){
+	          	     res.push(repositories[index]);
+	          	   }
+	          	});
+	          	console.log(res);   				
+	   					outhtml = outhtml + '<tr><td>'+name+'</td><td>'+stared+'</td><td>' + res.length + '%</td><td>'+forks+'</td><td>'+watched+'</td></tr>';
+	            
+	          }
+	          $('.chart').append(outhtml);
+	        } // end outputPageContent()
+	      } // end else statement
+	    }); // end requestJSON Ajax call
+	  }); // end click event handler
+	  
+	  function requestJSON(url, callback) {
+	    $.ajax({
+	      url: url,
+	      complete: function(xhr) {
+	        callback.call(null, xhr.responseJSON);
+	      }
+	    });
+	  }
+	});
+	</script>
+	</body>	
+</html>
+
