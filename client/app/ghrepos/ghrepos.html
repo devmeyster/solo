@@ -20,37 +20,37 @@
           <td>Open Issues</td>
         </tr>
     </table> -->
-    
-    <table ng-table="tableParams" class="table table-hover">
-            <tr>
-              <td>Repo</td>
-              <td>Stars</td>
-              <td>Merged</td>
-              <td>Forks</td>
-              <td>Watched</td>
-              <td>Open Issues</td>
-            </tr>
-            <tr ng-repeat="link in links | orderBy:'-Merged'"">
-                <td data-title="'Name'">
-                    {{link.name}}
-                </td>
-                <td data-title="'Stared'">
-                    {{link.stared}}
-                </td>
-                <td data-title="'Merged%'">
-                    {{link.merged}}
-                </td>
-                <td data-title="'Forks'" >
-                    {{link.forks}}
-                </td>
-                <td data-title="'Watched'" >
-                    {{link.watched}}
-                </td>
-                <td data-title="'Open Issues'" >
-                    {{link.open_issues}}
-                </td>
-            </tr>
-        </table>
+    <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
+    <table ng-table="link" class="table table-hover">
+      <tr>
+        <th><a href="" ng-click="predicate = 'name'; reverse=false">Repo</a></th>
+        <th><a href="" ng-click="predicate = 'stars'; reverse=!reverse">Stars</a></th>
+        <th><a href="" ng-click="predicate = 'merged'; reverse=!reverse">Merged%</a></th>
+        <th><a href="" ng-click="predicate = 'forks'; reverse=!reverse">Forks</a></th>
+        <th><a href="" ng-click="predicate = 'watched'; reverse=!reverse">Watched</a></th>
+        <th><a href="" ng-click="predicate = 'open-Issues'; reverse=!reverse">Open Issues</a></th>
+      </tr>
+      <tr ng-repeat="link in links | orderBy:predicate:reverse">
+        <td>
+            <a href={{link.html_url}}>{{link.name}}</a>
+        </td>
+        <td>
+            {{link.stared}}
+        </td>
+        <td>
+            {{link.merged}}
+        </td>
+        <td>
+            {{link.forks}}
+        </td>
+        <td>
+            {{link.watched}}
+        </td>
+        <td>
+            {{link.open_issues}}
+        </td>
+      </tr>
+    </table>
 
 
     <!-- <table>
