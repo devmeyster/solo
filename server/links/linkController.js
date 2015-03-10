@@ -1,7 +1,17 @@
 var Link    = require('./linkModel.js'),
     Q       = require('q'),
-    util    = require('../config/utils.js');
+    util    = require('../config/utils.js'),
+    Github = require('github-api'),
+    GithubClient = require('node-github-client');
 
+
+
+var github = new Github({
+  token: process.env.githubAPIDataGathering,
+  auth: 'oauth'
+});
+
+// var GHrepo = github.getRepo(username, reponame);
 
 module.exports = {
   findUrl: function (req, res, next, code) {
@@ -34,7 +44,27 @@ module.exports = {
 
   newLink: function (req, res, next) {
     var url = req.body.url;
-    console.log(req.body);
+    link = url.split('/');
+    var repoUser = link[link.length-2];
+    var repoName = link[link.length-1];
+    var res
+
+    var GHrepo = github.getRepo(repoUser, repoName);
+
+    GHrepo.show(function(err, repo){
+      console.log("Git repo: ", repo)
+    });
+
+    GHrepo.listPulls('closed', function(err, repo){
+      console.log("Git repo: ", repo)
+    });
+    
+
+    res.send('hello')
+
+
+
+    /*
     if (!util.isValidUrl(url)) {
       return next(new Error('Not a valid url'));
     }
@@ -69,6 +99,7 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
+      */
   },
 
   navToLink: function (req, res, next) {

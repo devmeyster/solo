@@ -21,6 +21,16 @@ module.exports = {
 
   isValidUrl: function(url) {
     return url.match(rValidUrl);
-  }
+  },
+
+  requestJSON: function(url, callback) {
+      $.ajax({
+        url: url,
+        complete: function(xhr) {
+          callback.call(null, xhr.responseJSON);
+        }
+      });
+    }
+
 };
 
