@@ -5,13 +5,22 @@
     <title>Github Repo Analyzer</title>
     <link rel="stylesheet" type="text/css" href="styles/style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Oldenburg|Open+Sans' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div class="pageTitle"><h1>Github Repo Analyzer</h1></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 pagelayout">
+          <div class="pageTitle"><h1>Github Repo Analyzer</h1></div>
 
-    <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
-    <div ui-view></div>
+          <!-- the ng-view directive is where our templates will be loaded into when naviagted to -->
+          <div ui-view></div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
 
+    </div>
     <script src="lib/angular/angular.js"></script>
     <!-- <script src="lib/angular-route/angular-route.js"></script> -->
     <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>

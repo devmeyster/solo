@@ -74,8 +74,10 @@ module.exports = {
           console.log(err);
           return;
         }
+        var name = util.capitalizeFirstLetter(json['name']);
+
         console.log("Git repo: ", json)
-        gitData['name'] = json['name']
+        gitData['name'] = name;
         gitData['watched'] = json['subscribers_count'];
         gitData['stared'] = json['watchers'];
         gitData['forks'] = json['forks'];
@@ -84,6 +86,8 @@ module.exports = {
 
         console.log(gitData);
         res.send(gitData);
+
+
       });
     });
 

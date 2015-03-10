@@ -1,69 +1,30 @@
 <div id='container'>
   <!-- Your html here -->
-  <a ui-sref="links">All Links</a>
-  <a ui-sref="ghrepos">Repos</a>
+  <br>
+  <p>Enter a single Github repo below and click the button to display profile info.</p>
   <form name="urlForm">
-    <input type="url" name="url" ng-model = "url">
-    <p ng-show="urlForm.url.$invalid">Enter a real url!</p>
-    <button ng-click= "addLink(url)">Add URL </button>
-    <!-- <div ng-show="link.url" url-Link></div> -->
+    <input class="searchbar" type="url" name="url" ng-model = "url" placeholder="Github repo...">  
+    <button class="btn btn-info" ng-click= "addLink(url)">Pull Repo Data </button>
   </form>
-  <!-- <input ng-model="search.$" placeholder="search"> -->
-  <div><strong>Repo List</strong></div>
-    <!-- <table>
-      <tr>
-          <td>Repo</td>
-          <td>Stars</td>
-          <td>Merged</td>
-          <td>Forks</td>
-          <td>Watched</td>
-          <td>Open Issues</td>
-        </tr>
-    </table> -->
-    <pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
-    <table ng-table="link" class="table table-hover">
-      <tr>
-        <th><a href="" ng-click="predicate = 'name'; reverse=false">Repo</a></th>
-        <th><a href="" ng-click="predicate = 'stars'; reverse=!reverse">Stars</a></th>
-        <th><a href="" ng-click="predicate = 'merged'; reverse=!reverse">Merged%</a></th>
-        <th><a href="" ng-click="predicate = 'forks'; reverse=!reverse">Forks</a></th>
-        <th><a href="" ng-click="predicate = 'watched'; reverse=!reverse">Watched</a></th>
-        <th><a href="" ng-click="predicate = 'open-Issues'; reverse=!reverse">Open Issues</a></th>
-      </tr>
-      <tr ng-repeat="link in links | orderBy:predicate:reverse">
-        <td>
-            <a href={{link.html_url}}>{{link.name}}</a>
-        </td>
-        <td>
-            {{link.stared}}
-        </td>
-        <td>
-            {{link.merged}}
-        </td>
-        <td>
-            {{link.forks}}
-        </td>
-        <td>
-            {{link.watched}}
-        </td>
-        <td>
-            {{link.open_issues}}
-        </td>
-      </tr>
-    </table>
-
-
-    <!-- <table>
-            <tr>
-        <div ng-repeat="link in links">
-              <td>{{link.name}}</td>
-              <td>{{link.stared}}</td>
-              <td>{{link.merged}}</td>
-              <td>{{link.forks}}</td>
-              <td>{{link.watched}}</td>
-              <td>{{link.open_issues}}</td>
-        </div>
-            </tr>
-    </table> -->
-    
+  <br>
+  <table ng-table="link" class="table table-hover">
+    <tr>
+      <th><a href="" ng-click="predicate = 'name'; reverse=false">Repo</a></th>
+      <th><a href="" ng-click="predicate = 'stars'; reverse=!reverse">Stars</a></th>
+      <th><a href="" ng-click="predicate = 'merged'; reverse=!reverse">Pulls Merged %</a></th>
+      <th><a href="" ng-click="predicate = 'forks'; reverse=!reverse">Forks</a></th>
+      <th><a href="" ng-click="predicate = 'watched'; reverse=!reverse">Watched</a></th>
+      <th><a href="" ng-click="predicate = 'open-Issues'; reverse=!reverse">Open Issues</a></th>
+    </tr>
+    <tr ng-repeat="link in links | orderBy:predicate:reverse">
+      <td>
+          <a href={{link.html_url}}>{{link.name}}</a>
+      </td>
+      <td>{{link.stared}}</td>
+      <td>{{link.merged}}</td>
+      <td>{{link.forks}}</td>
+      <td>{{link.watched}}</td>
+      <td>{{link.open_issues}}</td>
+    </tr>
+  </table>
 </div>
