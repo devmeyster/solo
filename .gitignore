@@ -1,5 +1,8 @@
 ### node etc ###
 
+
+./server/githubcred.js
+
 # Logs
 logs
 *.log

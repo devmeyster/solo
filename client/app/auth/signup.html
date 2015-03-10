@@ -1,0 +1,11 @@
+<div id='signup'>
+  <h1>signup</h1>
+  <form name="signupForm" ng-submit='signup(signupForm.$isValid)' novalidate>
+    <input type='text' name = "username" ng-model='user.username' required ng-minlength="3">
+    <p ng-show='signupForm.username.$invalid && !signupForm.username.$pristine' >Enter longer username longer than 3 characters</p>
+    <input type="password" name = "password" ng-model='user.password' required ng-minlength="3" ng-pattern="/^[a-z]+$/">
+    <p ng-show='signupForm.password.$invalid && !signupForm.password.$pristine'>Please enter a longer password</p>
+    <button>signup</button>
+  </form>
+  <a href="#/signin">Already have an account? <strong>Signin</strong> ...</a>
+</div>

@@ -1,0 +1,18 @@
+<div id='container'>
+  <!-- Your html here -->
+  <a ui-sref="links">All Links</a>
+  <a ui-sref="shorten">Shorten</a>
+  <a ui-sref="ghrepos">Repos</a>
+  <form name="urlForm">
+    <input type="url" name="url" ng-model = "url">
+    <p ng-show="urlForm.url.$invalid">Enter a real url!</p>
+    <button ng-click= "addLink(url)">Add URL </button>
+    <div ng-show="link.url" url-Link></div>
+  </form>
+  <!-- <input ng-model="search.$" placeholder="search"> -->
+  <ul>
+    <li ng-repeat="link in data.links | filter:search | orderBy:'-visits'">
+      <div url-Link></div>
+    </li>
+  </ul>
+</div>
