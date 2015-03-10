@@ -2,7 +2,8 @@ var Link    = require('./linkModel.js'),
     Q       = require('q'),
     util    = require('../config/utils.js'),
     Github = require('github-api'),
-    GithubClient = require('node-github-client');
+    GithubClient = require('node-github-client'),
+    _ = require('underscore-node');
 
 
 
@@ -47,20 +48,48 @@ module.exports = {
     link = url.split('/');
     var repoUser = link[link.length-2];
     var repoName = link[link.length-1];
-    var res
+    var gitData = {};
 
     var GHrepo = github.getRepo(repoUser, repoName);
 
-    GHrepo.show(function(err, repo){
-      console.log("Git repo: ", repo)
+
+    GHrepo.listPulls('closed', function(err, pulls){
+      if(err){
+        console.log(err);
+        return;
+      }
+      // console.log("Git repo: ", data)
+      var totalPulls = pulls.length;
+      var results = [];
+
+      _.each(pulls, function(pullRequest) {
+        if(pullRequest['merged_at'] !== null){
+           results.push(pullRequest);
+         }
+      });
+      gitData['merged'] = results.length/totalPulls;
+     
+      GHrepo.show(function(err, json){
+        if(err){
+          console.log(err);
+          return;
+        }
+        console.log("Git repo: ", json)
+        gitData['name'] = json['name']
+        gitData['watched'] = json['subscribers_count'];
+        gitData['stared'] = json['watchers'];
+        gitData['forks'] = json['forks'];
+        gitData['open_issues'] = json['open_issues'];
+        gitData['html_url'] = json['html_url'];
+
+        console.log(gitData);
+        res.send(gitData);
+      });
     });
 
-    GHrepo.listPulls('closed', function(err, repo){
-      console.log("Git repo: ", repo)
-    });
+
     
 
-    res.send('hello')
 
 
 
