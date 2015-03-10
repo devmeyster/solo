@@ -1,18 +1,69 @@
 <div id='container'>
   <!-- Your html here -->
   <a ui-sref="links">All Links</a>
-  <a ui-sref="shorten">Shorten</a>
   <a ui-sref="ghrepos">Repos</a>
   <form name="urlForm">
     <input type="url" name="url" ng-model = "url">
     <p ng-show="urlForm.url.$invalid">Enter a real url!</p>
     <button ng-click= "addLink(url)">Add URL </button>
-    <div ng-show="link.url" url-Link></div>
+    <!-- <div ng-show="link.url" url-Link></div> -->
   </form>
   <!-- <input ng-model="search.$" placeholder="search"> -->
-  <ul>
-    <li ng-repeat="link in data.links | filter:search | orderBy:'-visits'">
-      <div url-Link></div>
-    </li>
-  </ul>
+  <div><strong>Repo List</strong></div>
+    <!-- <table>
+      <tr>
+          <td>Repo</td>
+          <td>Stars</td>
+          <td>Merged</td>
+          <td>Forks</td>
+          <td>Watched</td>
+          <td>Open Issues</td>
+        </tr>
+    </table> -->
+    
+    <table ng-table="tableParams" class="table table-hover">
+            <tr>
+              <td>Repo</td>
+              <td>Stars</td>
+              <td>Merged</td>
+              <td>Forks</td>
+              <td>Watched</td>
+              <td>Open Issues</td>
+            </tr>
+            <tr ng-repeat="link in links | orderBy:'-Merged'"">
+                <td data-title="'Name'">
+                    {{link.name}}
+                </td>
+                <td data-title="'Stared'">
+                    {{link.stared}}
+                </td>
+                <td data-title="'Merged%'">
+                    {{link.merged}}
+                </td>
+                <td data-title="'Forks'" >
+                    {{link.forks}}
+                </td>
+                <td data-title="'Watched'" >
+                    {{link.watched}}
+                </td>
+                <td data-title="'Open Issues'" >
+                    {{link.open_issues}}
+                </td>
+            </tr>
+        </table>
+
+
+    <!-- <table>
+            <tr>
+        <div ng-repeat="link in links">
+              <td>{{link.name}}</td>
+              <td>{{link.stared}}</td>
+              <td>{{link.merged}}</td>
+              <td>{{link.forks}}</td>
+              <td>{{link.watched}}</td>
+              <td>{{link.open_issues}}</td>
+        </div>
+            </tr>
+    </table> -->
+    
 </div>

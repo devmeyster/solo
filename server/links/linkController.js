@@ -67,7 +67,7 @@ module.exports = {
            results.push(pullRequest);
          }
       });
-      gitData['merged'] = results.length/totalPulls;
+      gitData['merged'] = Math.floor(results.length/totalPulls*100);
      
       GHrepo.show(function(err, json){
         if(err){
