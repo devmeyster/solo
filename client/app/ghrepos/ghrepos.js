@@ -7,16 +7,39 @@ angular.module('shortly.ghrepos', [])
   stared: 35319,
   forks: 8841,
   open_issues: 218,
-  html_url: 'https://github.com/mbostock/d3' },{ merged: 86,
-  name: 'React',
-  watched: 1199,
-  stared: 17730,
-  forks: 2317,
-  open_issues: 512,
-  html_url: 'https://github.com/facebook/react' },{ merged: 60,
+  html_url: 'https://github.com/mbostock/d3' },
+  { merged: 40,
+  name: 'Ionic',
+  watched: 830,
+  stared: 14313,
+  forks: 2032,
+  open_issues: 314,
+  html_url: 'https://github.com/driftyco/ionic' },
+  { merged: 66,
+  name: 'Bootstrap',
+  watched: 4692,
+  stared: 78534,
+  forks: 30384,
+  open_issues: 133,
+  html_url: 'https://github.com/twbs/bootstrap' },
+  { merged: 76,
+  name: 'Knockout',
+  watched: 568,
+  stared: 6130,
+  forks: 1032,
+  open_issues: 385,
+  html_url: 'https://github.com/knockout/knockout' },
+  { merged: 60,
+  name: 'Spine',
+  watched: 115,
+  stared: 2907,
+  forks: 379,
+  open_issues: 38,
+  html_url: 'https://github.com/spine/spine' },
+  { merged: 60,
   name: 'Backbone',
   watched: 1571,
-  stared: 20998,
+  stared: 20999,
   forks: 4721,
   open_issues: 36,
   html_url: 'https://github.com/jashkenas/backbone' }];
@@ -32,17 +55,3 @@ angular.module('shortly.ghrepos', [])
   };
  
 });
-
-
-/*
-.controller('GhreposController', function ($scope, Git) {
-  $scope.data = {};
-  $scope.getLinks = function () {
-    Git.get().then(function(links) {
-      $scope.data.links = links;
-    });
-  };
-  $scope.getLinks();
-});
-
- */

@@ -1,41 +1,34 @@
 angular.module('shortly', [
   'shortly.services',
   'shortly.directives',
-  'shortly.links',
   'shortly.ghrepos',
-  'shortly.shorten',
-  'shortly.auth',
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  $urlRouterProvider.otherwise('/links');
+  $urlRouterProvider.otherwise('/ghrepos');
 
   $stateProvider
-    .state('signin', {
-      url: "/signin",
-      templateUrl: 'app/auth/signin.html',
-      controller: 'AuthController'
-    })
-    .state('signup', {
-      url: "/signup",
-      templateUrl: 'app/auth/signup.html',
-      controller: 'AuthController'
-    })
-    .state('links', {
-      url: "/links",
-      templateUrl: 'app/links/links.html',
-      controller: 'LinksController'
-    })
-    .state('shorten', {
-      url: "/shorten",
-      templateUrl: 'app/shorten/shorten.html',
-      controller: 'ShortenController'
-    })
     .state('ghrepos', {
       url: "/ghrepos",
       templateUrl: 'app/ghrepos/ghrepos.html',
       controller: 'GhreposController'
     })
+    // .state('signin', {
+    //   url: "/signin",
+    //   templateUrl: 'app/auth/signin.html',
+    //   controller: 'AuthController'
+    // })
+    // .state('signup', {
+    //   url: "/signup",
+    //   templateUrl: 'app/auth/signup.html',
+    //   controller: 'AuthController'
+    // })
+    // .state('links', {
+    //   url: "/links",
+    //   templateUrl: 'app/links/links.html',
+    //   controller: 'LinksController'
+    // })
+   
 
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
