@@ -7,10 +7,8 @@ angular.module('shortly.ghrepos', [])
     // console.log(url);
     var counter = 1;
     Git.add(url).then(function(link){
-      console.log("Response: ", link)
       $scope.links.push(link);
-      console.log("scope links", $scope.links);
-    })
+    });
   };
  
 });

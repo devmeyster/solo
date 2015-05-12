@@ -5,6 +5,16 @@
   <form name="urlForm">
     <input class="searchbar" type="url" name="url" ng-model = "url" placeholder="Github repo...(ex.https://github.com/mbostock/d3)">  
     <button class="btn btn-info" ng-click= "addLink(url)">Pull Repo Data </button>
+    <div class="popular-repos">
+      Try some of these:
+      <div>
+        <button class="btn btn-primary" ng-click="addLink('https://github.com/facebook/react')">React.js</button>
+        <button class="btn btn-primary" ng-click="addLink('https://github.com/mbostock/d3')">D3.js</button>
+        <button class="btn btn-primary" ng-click="addLink('https://github.com/jashkenas/backbone')">Backbone.js</button>
+        <button class="btn btn-primary" ng-click="addLink('https://github.com/knockout/knockout')">Knockout.js</button>
+        <button class="btn btn-primary" ng-click="addLink('https://github.com/driftyco/ionic')">Ionic</button>
+      </div>
+    </div>
   </form>
   <br>
   <table ng-table="link" class="table table-hover">

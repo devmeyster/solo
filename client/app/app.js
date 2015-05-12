@@ -5,31 +5,15 @@ angular.module('shortly', [
   'ui.router'
 ])
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
-  $urlRouterProvider.otherwise('/ghrepos');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
     .state('ghrepos', {
-      url: "/ghrepos",
+      url: "/",
       templateUrl: 'app/ghrepos/ghrepos.html',
       controller: 'GhreposController'
-    })
-    // .state('signin', {
-    //   url: "/signin",
-    //   templateUrl: 'app/auth/signin.html',
-    //   controller: 'AuthController'
-    // })
-    // .state('signup', {
-    //   url: "/signup",
-    //   templateUrl: 'app/auth/signup.html',
-    //   controller: 'AuthController'
-    // })
-    // .state('links', {
-    //   url: "/links",
-    //   templateUrl: 'app/links/links.html',
-    //   controller: 'LinksController'
-    // })
-   
-
+    });
+    
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     $httpProvider.interceptors.push('AttachTokens');
