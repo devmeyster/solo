@@ -2,17 +2,12 @@ var Link    = require('./linkModel.js'),
     Q       = require('q'),
     util    = require('../config/utils.js'),
     Github = require('github-api'),
-    GithubClient = require('node-github-client'),
     _ = require('underscore-node');
-
-
 
 var github = new Github({
   token: process.env.githubAPIDataGathering,
   auth: 'oauth'
 });
-
-// var GHrepo = github.getRepo(username, reponame);
 
 module.exports = {
   newLink: function (req, res, next) {
@@ -23,7 +18,6 @@ module.exports = {
     var gitData = {};
 
     var GHrepo = github.getRepo(repoUser, repoName);
-
 
     GHrepo.listPulls('closed', function(err, pulls){
       if(err){
@@ -57,31 +51,4 @@ module.exports = {
       });
     });
   }
-  // findUrl: function (req, res, next, code) {
-  //   var findLink = Q.nbind(Link.findOne, Link);
-  //   findLink({code: code})
-  //     .then(function (link) {
-  //       if (link) {
-  //         req.navLink = link;
-  //         next();
-  //       } else {
-  //         next(new Error('Link not added yet'));
-  //       }
-  //     })
-  //     .fail(function (error) {
-  //       next(error);
-  //     });
-  // },
-
-  // allLinks: function (req, res, next) {
-  // var findAll = Q.nbind(Link.find, Link);
-
-  // findAll({})
-  //   .then(function (links) {
-  //     res.json(links);
-  //   })
-  //   .fail(function (error) {
-  //     next(error);
-  //   });
-  // },
 };

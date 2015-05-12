@@ -1,5 +1,5 @@
 {
-  "name": "shortly-angular",
+  "name": "Github-Analyzer",
   "version": "0.0.0",
   "description": "",
   "main": "app.js",
@@ -34,7 +34,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
-    "github-api": "^0.10.3",
+    "github-api": "^0.10.4",
     "jwt-simple": "^0.2.0",
     "mongoose": "^3.8.12",
     "morgan": "^1.1.1",
@@ -43,6 +43,7 @@
     "passport-github": "^0.1.5",
     "passport-local": "^1.0.0",
     "q": "^1.0.1",
-    "request": "^2.36.0"
+    "request": "^2.36.0",
+    "underscore-node": "^0.1.2"
   }
 }
